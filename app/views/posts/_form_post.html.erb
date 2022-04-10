@@ -1,0 +1,16 @@
+<%= form_with model: post do |form| %>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+    <% post.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<button><%= link_to "Back", posts_path %></button>

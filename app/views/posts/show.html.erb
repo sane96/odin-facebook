@@ -1,0 +1,25 @@
+<br>
+<p><%= @post.body %></p>
+
+<ul>
+  <h3>Comments</h3>
+  <% @post.comments.each do |comment| %>
+    <li>
+      <p><strong><%=  %></strong></p>
+      <br>
+      
+      <p><%= comment.body %></p>
+      <br>
+
+      <%= @post.likes %>
+      <button><%= link_to 'Comment', comment, method: :show %></button>
+    </li>
+    <br>
+  <% end %>
+</ul>
+
+
+<button><%= link_to 'Edit',  edit_post_path, method: :edit%></button>
+<button><%= link_to 'Delete',  @post, method: :destroy, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></button>
+
+<button><%= link_to "Back", posts_path%></button>

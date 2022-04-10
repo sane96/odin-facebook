@@ -1,0 +1,25 @@
+<h1>Odin-Facebook</h1><br><br>
+
+
+<button><%= link_to "Logout", destroy_user_session_path, data: { "turbo-method": :delete } %></button><br><br>
+
+
+<button><%= link_to 'Create new Post', controller: :posts, action: :new %></button><br><br>
+
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <strong><%= post.user.name %></strong><br><br>
+      <%= link_to post.body, post %><br><br>
+      <%= post.likes.count %>
+      <% if current_user.likes.where(post_id: post.id).exists? %>
+          <%= link_to 'Liked', post_likes_path(post_id: post.id), method: :delete, data: {turbo_method: :delete }%>  
+      <% else %>
+          <%= link_to 'Like', post_likes_path(post_id: post.id), method: :post, data: {turbo_method: :post }%>   
+      <% end %></button>
+      
+
+    </li><br>
+  <% end %>
+</ul>
